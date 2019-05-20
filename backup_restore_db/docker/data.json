@@ -1,0 +1,10 @@
+{
+    "odoo_container": "odoo",
+    "pg_container": "postgres",
+    "pg_user": "openerp",
+    "prod_db": "PAWNSHOP",
+    "test_db": "PAWNSHOP_TEST",
+    "dump_loc": "/var/pgdump",
+    "filestore_loc": "/odoo/data/filestore",
+    "delay": "1m"
+}
