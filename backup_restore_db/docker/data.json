@@ -6,5 +6,9 @@
     "test_db": "PAWNSHOP_TEST",
     "dump_loc": "/var/pgdump",
     "filestore_loc": "/odoo/data/filestore",
-    "delay": "1m"
+    "delay": "1m",
+    "dest_dump_loc": "backup",
+    "dest_user": "backup-eco",
+    "dest_port": "1234",
+    "dest_ip": "213.123.156.345"
 }

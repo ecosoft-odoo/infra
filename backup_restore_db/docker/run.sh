@@ -16,6 +16,9 @@ $base_dir/cleanup_files.sh
 # Dump DB
 $base_dir/dump_db.sh
 
+# Remote Backup
+$base_dir/housekeeping.sh
+
 # Drop DB
 $base_dir/drop_db.sh
 
