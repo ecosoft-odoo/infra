@@ -1,2 +1,2 @@
 # Related files for installing odoo 7.0
-# test
+1. test
