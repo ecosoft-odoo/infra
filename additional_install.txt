@@ -1,0 +1,7 @@
+[Install]
+1. git
+2. nano
+3. xlrd
+4. setuptools-odoo
+5. openpyxl
+6. email_validator
