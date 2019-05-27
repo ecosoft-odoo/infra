@@ -1,2 +1,1 @@
-# infra
-Infrastructure related files
+Related files for installing odoo 7.0
