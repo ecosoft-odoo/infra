@@ -1,0 +1,4 @@
+[Install]
+1. git
+2. nano
+3. java 1.7
