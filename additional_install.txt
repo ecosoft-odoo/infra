@@ -5,3 +5,4 @@
 4. setuptools-odoo
 5. openpyxl
 6. email_validator
+7. xfonts-thai
