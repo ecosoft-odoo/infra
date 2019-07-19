@@ -4,7 +4,7 @@ postgres_container="postgres-11.2"
 database_prod="AAL"
 database_test="AAL_TEST"
 postgres_user="odoo"
-filestore_dir="/odoo-12.0/data/.local/share/Odoo/filestore"
+filestore_loc="/var/lib/odoo/.local/share/Odoo/filestore"
 
 echo "=================== Start ==================="
 
@@ -38,14 +38,14 @@ echo "6. Disable all scheduled actions"
 docker exec $postgres_container psql -U $postgres_user $database_test -c "update ir_cron set active = False"
 echo ""
 
-# copy prod data file > test data file
-echo "7. Copy" $filestore_dir/$database_prod "to" $filestore_dir/$database_test
-rm -r $filestore_dir/$database_test
-cp -r $filestore_dir/$database_prod $filestore_dir/$database_test
+# Start odoo
+echo "7. Start" $odoo_container
+docker start $odoo_container
 echo ""
 
-# Start odoo
-echo "8. Start" $odoo_container
-docker start $odoo_container
+# copy prod filestore > test filestore
+echo "8. Copy" $filestore_loc/$database_prod "to" $filestore_loc/$database_test
+docker exec $odoo_container rm -r $filestore_loc/$database_test
+docker exec $odoo_container cp -r $filestore_loc/$database_prod $filestore_loc/$database_test
 
 echo "=================== Finish ==================="
