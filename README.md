@@ -1,2 +1,1 @@
-# infra
-Infrastructure related files
+Copy Database Script
