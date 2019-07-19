@@ -17,7 +17,7 @@
    - **database_test** is database name of test
    - **postgres_user** is user of postgres
    - **filestore_dir** is path of filestore odoo
-3. Make sure found /var/scripts, if it doesn't have please create.
+3. Make sure /var/scripts exists, if it doesn't have please create.
    - mkdir /var/scripts
 4. Copy copy_database.sh to directory of scripts
    - cp copy_database.sh /var/scripts
@@ -27,3 +27,5 @@
    2. Put m h   * * *   root    /var/scripts/copy_database.sh > /var/log/copy_database.log (m = minues, h = hours)
       - Ex: 0 2   * * *   root    /var/scripts/copy_database.sh > /var/log/copy_database.log
    3. save crontab
+6. You can see log in /var/log/copy_database.log
+   - tail -f /var/log/copy_database.log
