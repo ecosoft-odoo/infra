@@ -7,7 +7,7 @@
 
 **Usage**
 1. Download script file to your directory
-   - git clone https://github.com/ecosoft-odoo/infra.git -b copy_database_script
+   - git clone https://github.com/ecosoft-odoo/infra.git -b copy_database_script copy_database_script
 2. Move into directory of copy_database_script
    - cd copy_database_script
 3. Edit variable in copy_database.sh
