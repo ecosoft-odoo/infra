@@ -1,10 +1,45 @@
 #!/bin/bash
-odoo_container="odoo-12.0"
-postgres_container="postgres-11.2"
-database_prod="AAL"
-database_test="AAL_TEST"
-postgres_user="odoo"
-filestore_loc="/var/lib/odoo/.local/share/Odoo/filestore"
+# Get parameters from command line
+for param in "$@"
+do
+    str1=`echo $param | cut -d'=' -f1`
+    str2=`echo $param | cut -d'=' -f2`
+    # Odoo Container Name
+    if [ $str1 == "odoo" ]
+    then
+        odoo_container=$str2
+    fi
+    # Postgres Container Name
+    if [ $str1 == "postgres" ]
+    then
+        postgres_container=$str2
+    fi
+    # Database Name
+    if [ $str1 == "database" ]
+    then
+        database_prod=$str2
+    fi
+    # Postgres User
+    if [ $str1 == "user" ]
+    then
+      postgres_user=$str2
+    fi
+    # filestore location
+    if [ $str1 == "filestore" ]
+    then
+      filestore_loc=$str2
+    fi
+done
+
+# Check arguments is not null
+if [[ $odoo_container == "" || $postgres_container == "" || $database_prod == "" || $postgres_user == "" || $filestore_loc == "" ]]
+then
+    echo "Error!!! Parameter is not valid, please see detail in https://ecosoft-kx.blogspot.com/2019/07/auto-duplicate-database.html"
+    exit 0
+fi
+
+# Define database_test = ${database_prod}_TEST
+database_test=${database_prod}_TEST
 
 echo "=================== Start ==================="
 
@@ -49,3 +84,5 @@ docker exec $odoo_container rm -r $filestore_loc/$database_test
 docker exec $odoo_container cp -r $filestore_loc/$database_prod $filestore_loc/$database_test
 
 echo "=================== Finish ==================="
+
+exit 0
