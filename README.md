@@ -14,7 +14,7 @@
    - mkdir /var/scripts
 4. Copy copy_database.sh to directory of scripts
    - cp copy_database.sh /var/scripts/copy_database.sh
-5. Set time and pass some parameters to run copy_database.sh in crontab
+5. Set time and pass parameters to run copy_database.sh in crontab
    1. Open crontab
       - nano /etc/crontab
    2. Put m h   * * *   root    /var/scripts/copy_database.sh **odoo**=odoo_container_name **postgres**=postgres_container_name **database**=database_name **user**=user_of_postgres **filestore**=path_of_filestore_odoo > /var/log/copy_database.log 2>&1 (m = minues, h = hours)
