@@ -17,7 +17,7 @@
 5. Set time and pass some parameters to run copy_database.sh in crontab
    1. Open crontab
       - nano /etc/crontab
-   2. Put m h   * * *   root    /var/scripts/copy_database.sh odoo=<odoo container name> postgres=<postgres container name> database=<database name> user=<user of postgres> filestore=<path of filestore odoo> > /var/log/copy_database.log 2>&1 (m = minues, h = hours)
+   2. Put m h   * * *   root    /var/scripts/copy_database.sh **odoo**=odoo_container_name **postgres**=postgres_container_name **database**=database_name **user**=user_of_postgres **filestore**=path_of_filestore_odoo > /var/log/copy_database.log 2>&1 (m = minues, h = hours)
       - Ex: 0 2   * * *   root    /var/scripts/copy_database.sh odoo=odoo-12.0 postgres=postgres-11.2 database=AAL user=odoo filestore=/var/lib/odoo/.local/share/Odoo/filestore > /var/log/copy_database.log 2>&1
    3. save crontab
 6. You can see log in /var/log/copy_database.log
