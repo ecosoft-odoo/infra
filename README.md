@@ -10,22 +10,15 @@
    - git clone https://github.com/ecosoft-odoo/infra.git -b copy_database_script copy_database_script
 2. Move into directory of copy_database_script
    - cd copy_database_script
-3. Edit variable in copy_database.sh
-   - **odoo_container** is container name of odoo
-   - **postgres_container** is container name of postgres
-   - **database_prod** is database name of production
-   - **database_test** is database name of test
-   - **postgres_user** is user of postgres
-   - **filestore_dir** is path of filestore odoo
 3. Make sure /var/scripts exist, if it doesn't exist please create.
    - mkdir /var/scripts
 4. Copy copy_database.sh to directory of scripts
    - cp copy_database.sh /var/scripts/copy_database.sh
-5. Set time to run copy_database.sh in crontab
+5. Set time and pass some parameters to run copy_database.sh in crontab
    1. Open crontab
       - nano /etc/crontab
-   2. Put m h   * * *   root    /var/scripts/copy_database.sh > /var/log/copy_database.log 2>&1 (m = minues, h = hours)
-      - Ex: 0 2   * * *   root    /var/scripts/copy_database.sh > /var/log/copy_database.log 2>&1
+   2. Put m h   * * *   root    /var/scripts/copy_database.sh odoo=<odoo container name> postgres=<postgres container name> database=<database name> user=<user of postgres> filestore=<path of filestore odoo> > /var/log/copy_database.log 2>&1 (m = minues, h = hours)
+      - Ex: 0 2   * * *   root    /var/scripts/copy_database.sh odoo=odoo-12.0 postgres=postgres-11.2 database=AAL user=odoo filestore=/var/lib/odoo/.local/share/Odoo/filestore > /var/log/copy_database.log 2>&1
    3. save crontab
 6. You can see log in /var/log/copy_database.log
    - tail -f /var/log/copy_database.log
