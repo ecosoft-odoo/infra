@@ -1,0 +1,15 @@
+./connector-interfaces:
+    remotes:
+        oca:  https://github.com/OCA/connector-interfaces.git
+        acsone:  https://github.com/acsone/connector-interfaces.git
+    merges:
+        - oca 6054de2c4e669f85cec380da90d746061967dc83
+        - acsone 8.0-connector_flow
+        - acsone 80_connector_flow_ir_cron_able-lmi
+        - acsone 8.0_connector_flow_improve_eval_config
+    target: acsone aggregated_branch_name
+    fetch_all:
+        - oca
+    shell_command_after:
+        - echo 'a first command'
+        - echo 'a second command'
