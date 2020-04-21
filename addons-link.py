@@ -12,13 +12,13 @@ ADDONS_DIR = "%s/addons" % dir_path
 REPO_DIR = "%s/repository" % dir_path
 MANIFESTS = ("__manifest__.py", "__openerp__.py")
 
-print("Linking all addons from %s in %s" % (ADDONS_YAML, ADDONS_DIR))
+print("Linking all addons...")
 
 # Remove all links in addons dir
 def remove_addons_link():
     for link in iglob(os.path.join(ADDONS_DIR, "*")):
         os.remove(link)
-        print("Remove %s" % link)
+        print("Remove %s" % os.path.basename(link))
     return True
 
 # Add new links
@@ -71,10 +71,10 @@ def add_addons_link():
         src = os.path.join(REPO_DIR, repos.pop(), addon)
         dst = os.path.join(ADDONS_DIR, addon)
         os.symlink(src, dst)
-        print("Link %s in %s" % (src, dst))
+        print("Link %s" % addon)
     return True
 
 remove_addons_link()
 add_addons_link()
 
-print("End")
+print("End...")
