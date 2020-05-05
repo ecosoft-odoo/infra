@@ -5,10 +5,10 @@ import yaml
 from glob import iglob, glob
 from pprint import pformat
 
-os.system("mkdir -p addons")
+os.system("mkdir -p auto-addons")
 dir_path = os.path.dirname(os.path.realpath(__file__))
 ADDONS_YAML = "%s/addons.yaml" % dir_path
-ADDONS_DIR = "%s/addons" % dir_path
+ADDONS_DIR = "%s/auto-addons" % dir_path
 REPO_DIR = "%s/repository" % dir_path
 MANIFESTS = ("__manifest__.py", "__openerp__.py")
 
