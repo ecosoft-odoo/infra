@@ -5,24 +5,24 @@ import yaml
 from glob import iglob, glob
 from pprint import pformat
 
-os.system("mkdir -p auto-addons")
 dir_path = os.path.dirname(os.path.realpath(__file__))
-ADDONS_YAML = "%s/addons.yaml" % dir_path
-ADDONS_DIR = "%s/auto-addons" % dir_path
-REPO_DIR = "%s/repository" % dir_path
+ADDONS_YAML = os.path.join(dir_path, "addons.yaml")
+ADDONS_DIR = os.path.join(dir_path, "auto-addons")
+REPO_DIR = os.path.join(dir_path, "repository")
 MANIFESTS = ("__manifest__.py", "__openerp__.py")
+os.system("mkdir -p %s" % ADDONS_DIR)
 
-print("Linking all addons...")
+print("Copying all addons...")
 
-# Remove all links in addons dir
-def remove_addons_link():
-    for link in iglob(os.path.join(ADDONS_DIR, "*")):
-        os.remove(link)
-        print("Remove %s" % os.path.basename(link))
+# Remove all addons in ADDONS_DIR
+def remove_addons():
+    for path in iglob(os.path.join(ADDONS_DIR, "*")):
+        os.system("rm -r %s" % path)
+        print("Remove %s" % os.path.basename(path))
     return True
 
-# Add new links
-def add_addons_link():
+# Copy all addons with related ADDONS_YAML
+def copy_addons():
     config = dict()
     missing_glob = set()
     missing_manifest = set()
@@ -57,9 +57,9 @@ def add_addons_link():
     
     error = []
     if missing_glob:
-        error += ["Addons not found:", pformat(missing_glob)]
+        error += ["Addons not found: %s" % pformat(missing_glob)]
     if missing_manifest:
-        error += ["Addons without manifest:", pformat(missing_manifest)]
+        error += ["Addons without manifest: %s" % pformat(missing_manifest)]
     if error:
         print("\n".join(error))
         raise SystemExit
@@ -70,11 +70,11 @@ def add_addons_link():
             raise SystemExit
         src = os.path.join(REPO_DIR, repos.pop(), addon)
         dst = os.path.join(ADDONS_DIR, addon)
-        os.symlink(src, dst)
-        print("Link %s" % addon)
+        os.system("cp -r %s %s" % (src, dst))
+        print("Copy %s" % addon)
     return True
 
-remove_addons_link()
-add_addons_link()
+remove_addons()
+copy_addons()
 
 print("End...")
