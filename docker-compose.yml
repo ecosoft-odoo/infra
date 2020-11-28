@@ -19,6 +19,7 @@ services:
         restart: always
         ports: 
             - "8069:8069"
+            - "8072:8072"
         environment: 
             - HOST=postgres
             - PORT=5432
